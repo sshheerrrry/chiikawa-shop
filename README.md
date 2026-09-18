@@ -128,14 +128,14 @@ chiikawa-shop/
 
 ## Docker 啟動
 
-### 1\. Clone 專案
+### 1. Clone 專案
 
 ``` bash
 git clone <your-repository-url>
 cd chiikawa-shop
 ```
 
-### 2\. 建置並啟動
+### 2. 建置並啟動
 
 在專案根目錄執行：
 
@@ -153,19 +153,19 @@ database/init.sql
 
 建立專案所需的資料庫結構與初始化資料。
 
-### 3\. 背景執行
+### 3. 背景執行
 
 ``` bash
 docker compose up -d --build
 ```
 
-### 4\. 查看容器
+### 4. 查看容器
 
 ``` bash
 docker compose ps
 ```
 
-### 5\. 停止服務
+### 5. 停止服務
 
 ``` bash
 docker compose down
@@ -235,7 +235,7 @@ http://localhost:5173
 ``` http
 GET /api/products
 GET /api/products/{id}
-GET /api/products/search?name=吉伊卡哇\&category=PLUSH
+GET /api/products/search?name=吉伊卡哇&category=PLUSH
 POST /api/admin/products
 PUT /api/admin/products/{id}
 DELETE /api/admin/products/{id}
@@ -319,7 +319,7 @@ Boot 的資料庫連線資訊。
 
 ``` text
 backend/target/
-frontend/node\_modules/
+frontend/node_modules/
 frontend/dist/
 .idea/
 .vscode/
@@ -327,7 +327,7 @@ frontend/dist/
 .classpath
 .project
 .env
-\*.log
+*.log
 ```
 
 ## 專案目的

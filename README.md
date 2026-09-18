@@ -12,53 +12,53 @@
 
 ### 使用者功能
 
--   瀏覽商品不需登入
--   會員註冊與登入
--   JWT 身分驗證
--   商品名稱與類別搜尋
--   加入、查看、修改及刪除購物車商品
--   購物車結帳
--   查看歷史訂單
+* 瀏覽商品不需登入
+* 會員註冊與登入
+* JWT 身分驗證
+* 商品名稱與類別搜尋
+* 加入、查看、修改及刪除購物車商品
+* 購物車結帳
+* 查看歷史訂單
 
 ### 管理員功能
 
--   管理員登入
--   新增商品
--   查詢商品
--   修改商品
--   刪除商品
+* 管理員登入
+* 新增商品
+* 查詢商品
+* 修改商品
+* 刪除商品
 
 ## 技術架構
 
 ### Backend
 
--   Java 17
--   Spring Boot 3
--   Spring Web
--   Spring Data JPA
--   MySQL
--   JWT Authentication
--   Maven
+* Java 17
+* Spring Boot 3
+* Spring Web
+* Spring Data JPA
+* MySQL
+* JWT Authentication
+* Maven
 
 ### Frontend
 
--   React
--   Vite
--   React Router
--   Axios
--   Nginx
+* React
+* Vite
+* React Router
+* Axios
+* Nginx
 
 ### Database
 
--   MySQL
--   SQL 初始化腳本
+* MySQL
+* SQL 初始化腳本
 
 ### DevOps
 
--   Docker
--   Docker Compose
--   Dockerfile
--   `.dockerignore`
+* Docker
+* Docker Compose
+* Dockerfile
+* `.dockerignore`
 
 ## 系統架構
 
@@ -98,7 +98,7 @@ Docker Compose
 ## 專案結構
 
 ``` text
-chiikawa_shop/
+chiikawa-shop/
 │
 ├── backend/
 │   ├── src/
@@ -121,10 +121,6 @@ chiikawa_shop/
 │   ├── package-lock.json
 │   └── vite.config.js
 │
-├── docs/
-│   ├── Chiikawa_Shop_Project.md
-│   └── JWT說明.md
-│
 ├── .gitignore
 ├── docker-compose.yml
 └── README.md
@@ -132,14 +128,14 @@ chiikawa_shop/
 
 ## Docker 啟動
 
-### 1. Clone 專案
+### 1\. Clone 專案
 
 ``` bash
 git clone <your-repository-url>
-cd chiikawa_shop
+cd chiikawa-shop
 ```
 
-### 2. 建置並啟動
+### 2\. 建置並啟動
 
 在專案根目錄執行：
 
@@ -157,19 +153,19 @@ database/init.sql
 
 建立專案所需的資料庫結構與初始化資料。
 
-### 3. 背景執行
+### 3\. 背景執行
 
 ``` bash
 docker compose up -d --build
 ```
 
-### 4. 查看容器
+### 4\. 查看容器
 
 ``` bash
 docker compose ps
 ```
 
-### 5. 停止服務
+### 5\. 停止服務
 
 ``` bash
 docker compose down
@@ -239,7 +235,7 @@ http://localhost:5173
 ``` http
 GET /api/products
 GET /api/products/{id}
-GET /api/products/search?name=吉伊卡哇&category=PLUSH
+GET /api/products/search?name=吉伊卡哇\&category=PLUSH
 POST /api/admin/products
 PUT /api/admin/products/{id}
 DELETE /api/admin/products/{id}
@@ -279,19 +275,13 @@ GET /api/orders/history
 前端將 Token 儲存在：
 
 ``` javascript
-localStorage['chiikawa_token']
+localStorage\['chiikawa\_token']
 ```
 
 呼叫需要會員身分的 API 時，Axios 會在 Request Header 加入：
 
 ``` http
 Authorization: Bearer <JWT>
-```
-
-JWT 的詳細流程與實作說明請參考：
-
-``` text
-docs/JWT說明.md
 ```
 
 ## 圖片
@@ -329,7 +319,7 @@ Boot 的資料庫連線資訊。
 
 ``` text
 backend/target/
-frontend/node_modules/
+frontend/node\_modules/
 frontend/dist/
 .idea/
 .vscode/
@@ -337,32 +327,33 @@ frontend/dist/
 .classpath
 .project
 .env
-*.log
+\*.log
 ```
 
 ## 專案目的
 
 本專案主要用於練習與整合 Java Web 後端開發技術，包括：
 
--   Spring Boot RESTful API
--   前後端分離架構
--   React 與後端 API 串接
--   JPA / MySQL 資料存取
--   JWT 登入驗證
--   電商購物車與訂單流程
--   Docker 容器化
--   Docker Compose 多服務整合
--   MySQL 自動初始化
+* Spring Boot RESTful API
+* 前後端分離架構
+* React 與後端 API 串接
+* JPA / MySQL 資料存取
+* JWT 登入驗證
+* 電商購物車與訂單流程
+* Docker 容器化
+* Docker Compose 多服務整合
+* MySQL 自動初始化
 
 ## 後續可改善項目
 
--   增加自動化測試
--   完善錯誤處理與統一 API Response
--   強化輸入資料驗證
--   改善權限管理
--   增加 CI/CD
--   部署至雲端環境
+* 增加自動化測試
+* 完善錯誤處理與統一 API Response
+* 強化輸入資料驗證
+* 改善權限管理
+* 增加 CI/CD
+* 部署至雲端環境
 
 ## Disclaimer
 
 本專案僅供程式開發學習與作品展示使用。角色名稱及相關智慧財產權屬於其原權利人，本專案與官方品牌無關。
+

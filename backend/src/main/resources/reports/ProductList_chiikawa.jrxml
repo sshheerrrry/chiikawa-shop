@@ -1,0 +1,52 @@
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="VocabList" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="1250bffc-97d8-4518-bf58-aa4be9186562">
+	<parameter name="ReportTitle" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="series" class="java.lang.String"/>
+	<field name="characterName" class="java.lang.String"/>
+	<field name="price" class="java.math.BigDecimal"/>
+	<field name="stock" class="java.lang.Integer"/>
+	<title height="50">
+		<element kind="textField" uuid="6acc3701-b001-43b4-b8ca-dacc126f6f96" x="0" y="0" width="555" height="50" backcolor="#FAF7A7" mode="Opaque" fontName="SimHei" fontSize="18.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{ReportTitle}]]></expression>
+		</element>
+	</title>
+	<columnHeader height="35">
+		<element kind="staticText" uuid="303becfe-1dc7-4421-a333-265a341c06fa" x="0" y="0" width="85" height="30" fontName="SimHei" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[序號]]></text>
+		</element>
+		<element kind="staticText" uuid="a3526891-a423-44ae-b32f-79020d4a7812" x="85" y="0" width="120" height="30" fontName="SimHei" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[系列]]></text>
+		</element>
+		<element kind="staticText" uuid="6a37040b-9db5-433d-a003-27b01df7512d" x="205" y="0" width="120" height="30" fontName="SimHei" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[角色]]></text>
+		</element>
+		<element kind="staticText" uuid="7165a05b-1a7c-4c5e-9950-cb7a7d444698" x="325" y="0" width="120" height="30" fontName="SimHei" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<text><![CDATA[價格]]></text>
+		</element>
+		<element kind="staticText" uuid="2216ba66-8883-48bb-9fe3-16cb278a856d" x="445" y="0" width="110" height="30" fontName="SimHei" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[庫存]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="35">
+			<element kind="textField" uuid="a6f1cf9b-69c2-46d0-9771-45f6bea8a1a9" x="0" y="0" width="85" height="30" fontName="SimHei" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$V{REPORT_COUNT}]]></expression>
+			</element>
+			<element kind="textField" uuid="adcf7898-b2bf-491e-80fc-d926ff25f46d" x="85" y="0" width="120" height="30" fontName="SimHei" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{series}]]></expression>
+			</element>
+			<element kind="textField" uuid="455a5044-e8e5-4c31-a930-10577d0a9e9f" x="205" y="0" width="120" height="30" fontName="SimHei" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{characterName}]]></expression>
+			</element>
+			<element kind="textField" uuid="1e631ca5-ed3f-4562-a3be-f0494f049cd7" x="325" y="0" width="120" height="30" fontName="SimHei" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<expression><![CDATA[$F{price}]]></expression>
+			</element>
+			<element kind="textField" uuid="f3d9fc0c-d6f4-43da-863c-e54463650956" x="445" y="0" width="110" height="30" fontName="SimHei" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{stock}]]></expression>
+			</element>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,56 @@
+# =========================
+# Backend - Spring Boot / Maven
+# =========================
+
+# Maven build output
+backend/target/
+target/
+
+# =========================
+# Frontend - Node.js / Vite
+# =========================
+
+# npm dependencies
+frontend/node_modules/
+node_modules/
+
+# Vite build output
+frontend/dist/
+dist/
+
+# =========================
+# Eclipse
+# =========================
+.classpath
+.project
+.settings/
+
+# =========================
+# IntelliJ IDEA
+# =========================
+.idea/
+*.iml
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Operating System
+# =========================
+.DS_Store
+Thumbs.db

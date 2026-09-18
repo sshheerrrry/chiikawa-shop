@@ -1,0 +1,60 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: chiikawa-mysql
+
+    ports:
+      - "3307:3306"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: chiikawadb
+
+    volumes:
+      # MySQL 資料持久化
+      - chiikawa_mysql_data:/var/lib/mysql
+
+      # 第一次建立資料庫時，自動執行 init.sql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+
+  backend:
+    build:
+      context: ./backend
+
+    image: chiikawa-backend
+    container_name: chiikawa-backend
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      DB_URL: "jdbc:mysql://mysql:3306/chiikawadb?useSSL=false&serverTimezone=Asia/Taipei&allowPublicKeyRetrieval=true&characterEncoding=utf8"
+      DB_USERNAME: root
+      DB_PASSWORD: "1234"
+
+    depends_on:
+      - mysql
+
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+
+  frontend:
+    build:
+      context: ./frontend
+
+    image: chiikawa-frontend
+    container_name: chiikawa-frontend
+
+    ports:
+      - "5173:80"
+
+    depends_on:
+      - backend
+
+
+volumes:
+  chiikawa_mysql_data:
+    name: chiikawa_mysql_data

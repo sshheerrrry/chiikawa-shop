@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chiikawa.shop.mapper.ProductMyBatisMapper">
+
+    <!-- 查詢全部商品 -->
+    <select
+        id="findAll"
+        resultType="com.chiikawa.shop.entity.Product">
+
+        SELECT
+            id,
+            series,
+            character_name,
+            description,
+            price,
+            stock,
+            active,
+            image_url,
+            created_at
+        FROM products
+        WHERE active = 1
+        ORDER BY id
+    </select>
+	
+	<!-- 管理員：查詢全部商品，包含已下架商品 -->
+	<select
+	    id="findAllForAdmin"
+	    resultType="com.chiikawa.shop.entity.Product">
+	
+	    SELECT
+	        id,
+	        series,
+	        character_name,
+	        description,
+	        price,
+	        stock,
+	        active,
+	        image_url,
+	        created_at
+	    FROM products
+	    ORDER BY id
+	</select>
+
+    <!-- 查詢單一商品 -->
+	<select
+	    id="findById"
+	    resultType="com.chiikawa.shop.entity.Product">
+	
+	    SELECT
+	        id,
+	        series,
+	        character_name,
+	        description,
+	        price,
+	        stock,
+	        active,
+	        image_url,
+	        created_at
+	    FROM products
+	    WHERE id = #{id}
+	</select>
+
+
+    <!-- 系列 / 角色搜尋 -->
+	<select
+	    id="search"
+	    resultType="com.chiikawa.shop.entity.Product">
+	
+	    SELECT
+	        id,
+	        series,
+	        character_name,
+	        description,
+	        price,
+	        stock,
+	        active,
+	        image_url,
+	        created_at
+	    FROM products
+	
+	    <where>
+	        active = 1
+	
+	        <if test="series != null and series != ''">
+	            AND LOWER(series)
+	                LIKE CONCAT('%', LOWER(#{series}), '%')
+	        </if>
+	
+	        <if test="characterName != null and characterName != ''">
+	            AND LOWER(character_name)
+	                LIKE CONCAT('%', LOWER(#{characterName}), '%')
+	        </if>
+	    </where>
+	
+	    ORDER BY id
+	</select>
+
+
+    <!-- 新增商品 -->
+	<insert
+	    id="insert"
+	    parameterType="com.chiikawa.shop.entity.Product"
+	    useGeneratedKeys="true"
+	    keyProperty="id">
+	
+	    INSERT INTO products
+	    (
+	        series,
+	        character_name,
+	        description,
+	        price,
+	        stock,
+	        active,
+	        image_url,
+	        created_at
+	    )
+	
+	    VALUES
+	    (
+	        #{series},
+	        #{characterName},
+	        #{description},
+	        #{price},
+	        #{stock},
+	        #{active},
+	        #{imageUrl},
+	        NOW()
+	    )
+	</insert>
+
+    <!-- 修改商品 -->
+	<update
+	    id="update"
+	    parameterType="com.chiikawa.shop.entity.Product">
+	
+	    UPDATE products
+	    SET
+	        series = #{series},
+	        character_name = #{characterName},
+	        description = #{description},
+	        price = #{price},
+	        stock = #{stock},
+	        image_url = #{imageUrl},
+	        active = #{active}
+	    WHERE id = #{id}
+	</update>
+
+    <!-- 商品是否存在 -->
+    <select
+        id="countById"
+        resultType="int">
+
+        SELECT COUNT(*)
+        FROM products
+        WHERE id = #{id}
+    </select>
+    
+    <!-- =====================================
+	     檢查系列 + 角色是否已存在
+	     
+	     excludeId = null：新增商品，檢查全部商品
+	     
+	     excludeId != null：修改商品，排除目前商品自己
+	     ===================================== -->
+	<select
+	    id="countBySeriesAndCharacterName"
+	    resultType="int">
+	
+	    SELECT COUNT(*)
+	    FROM products
+	
+	    WHERE LOWER(TRIM(series)) = LOWER(TRIM(#{series}))
+	      AND LOWER(TRIM(character_name)) = LOWER(TRIM(#{characterName}))
+	      
+	    <if test="excludeId != null">
+	        AND id != #{excludeId}
+	    </if>
+	
+	</select>
+
+    <!-- 刪除商品 -->
+    <delete id="deleteById">
+    
+        DELETE FROM products
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 所有系列 -->
+    <select
+	    id="findAllSeries"
+	    resultType="string">
+	
+	    SELECT DISTINCT series
+	    FROM products
+	    WHERE active = 1
+	      AND series IS NOT NULL
+	      AND series != ''
+	    ORDER BY series
+	</select>
+    
+	<!-- 分頁 -->
+	<select
+    	id="findPage"
+    	resultType="com.chiikawa.shop.entity.Product">
+
+    	SELECT
+        	id,
+        	series,
+        	character_name,
+        	description,
+        	price,
+        	stock,
+        	active,
+        	image_url,
+        	created_at
+    	FROM products
+    	WHERE active = 1
+    	ORDER BY series, id
+    	LIMIT #{size}
+    	OFFSET #{offset}
+	</select>
+	
+	<!-- 上架商品總筆數 -->
+	<select
+	    id="countAll"
+	    resultType="long">
+	
+	    SELECT COUNT(*)
+	    FROM products
+	    WHERE active = 1
+	</select>
+	
+	<!-- 搜尋分頁 -->
+	<select
+	    id="searchPage"
+	    resultType="com.chiikawa.shop.entity.Product">
+	
+	    SELECT
+	        id,
+	        series,
+	        character_name,
+	        description,
+	        price,
+	        stock,
+	        active,
+	        image_url,
+	        created_at
+	    FROM products
+	
+	    <where>
+	        active = 1
+	
+	        <if test="series != null and series != ''">
+	            AND LOWER(series)
+	                LIKE CONCAT('%', LOWER(#{series}), '%')
+	        </if>
+	
+	        <if test="characterName != null and characterName != ''">
+	            AND LOWER(character_name)
+	                LIKE CONCAT('%', LOWER(#{characterName}), '%')
+	        </if>
+	    </where>
+	
+	    ORDER BY series, id
+	    LIMIT #{size}
+	    OFFSET #{offset}
+	</select>
+	
+	<!-- 搜尋上架商品總筆數 -->
+	<select
+	    id="countSearch"
+	    resultType="long">
+	
+	    SELECT COUNT(*)
+	    FROM products
+	
+	    <where>
+	        active = 1
+	
+	        <if test="series != null and series != ''">
+	            AND LOWER(series)
+	                LIKE CONCAT('%', LOWER(#{series}), '%')
+	        </if>
+	
+	        <if test="characterName != null and characterName != ''">
+	            AND LOWER(character_name)
+	                LIKE CONCAT('%', LOWER(#{characterName}), '%')
+	        </if>
+	    </where>
+	</select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fontFamilies>
+
+    <fontFamily name="SimHei">
+
+        <normal>
+            <ttf>fonts/SimHei.ttf</ttf>
+            <pdf>fonts/SimHei.ttf</pdf>
+        </normal>
+
+        <bold>
+            <ttf>fonts/SimHei.ttf</ttf>
+            <pdf>fonts/SimHei.ttf</pdf>
+        </bold>
+
+        <italic>
+            <ttf>fonts/SimHei.ttf</ttf>
+            <pdf>fonts/SimHei.ttf</pdf>
+        </italic>
+
+        <boldItalic>
+            <ttf>fonts/SimHei.ttf</ttf>
+            <pdf>fonts/SimHei.ttf</pdf>
+        </boldItalic>
+
+        <pdfEncoding>Identity-H</pdfEncoding>
+
+        <pdfEmbedded>true</pdfEmbedded>
+
+    </fontFamily>
+
+</fontFamilies>
